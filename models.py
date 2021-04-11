@@ -15,6 +15,7 @@ class Warning(Model):
     case = fields.IntField()
     reason = fields.TextField()
     severity = fields.IntField()
+    mod = fields.BigIntField()
 
 class Promotion(Model):
     user = fields.ForeignKeyField('models.User', related_name='promotions')
@@ -23,3 +24,21 @@ class Promotion(Model):
     category_id = fields.BigIntField()
     promo_id = fields.IntField()
     reply_id = fields.BigIntField()
+    
+class Reaction(Model):
+    channel_id = fields.BigIntField()
+    message_id = fields.BigIntField()
+    role_id = fields.BigIntField()
+    emoji_id = fields.BigIntField()
+
+class Mute(Model):
+    automod = fields.BooleanField(default = False)
+    seconds = fields.BigIntField(null = True)
+    user = fields.ForeignKeyField('models.User', related_name='mutes')
+    reason = fields.TextField()
+    start_time = fields.BigIntField()
+    handled = fields.BooleanField()
+
+class Tag(Model):
+    name = fields.TextField()
+    content = fields.TextField()

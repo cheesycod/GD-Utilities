@@ -16,6 +16,7 @@ async def init():
     #  also specify the app name of "models"
     #  which contain models from "models"
     await Tortoise.init(
+        
         db_url=f'sqlite://{config.db}',
         modules={'models': ['models']}
     )
